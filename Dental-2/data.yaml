@@ -1,0 +1,12 @@
+names:
+- Caries
+nc: 1
+roboflow:
+  license: CC BY 4.0
+  project: dental-bbuhy
+  url: https://universe.roboflow.com/ashish-h8q6q/dental-bbuhy/dataset/2
+  version: 2
+  workspace: ashish-h8q6q
+test: ../test/images
+train: Dental-2/train/images
+val: Dental-2/valid/images

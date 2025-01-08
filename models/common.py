@@ -37,23 +37,9 @@ from ultralytics.utils.plotting import Annotator, colors, save_one_box
 
 from utils import TryExcept
 from utils.dataloaders import exif_transpose, letterbox
-from utils.general import (
-    LOGGER,
-    ROOT,
-    Profile,
-    check_requirements,
-    check_suffix,
-    check_version,
-    colorstr,
-    increment_path,
-    is_jupyter,
-    make_divisible,
-    non_max_suppression,
-    scale_boxes,
-    xywh2xyxy,
-    xyxy2xywh,
-    yaml_load,
-)
+from utils.general import (LOGGER, ROOT, Profile, check_requirements, check_suffix, check_version, colorstr,
+                           increment_path, is_jupyter, make_divisible, non_max_suppression, scale_boxes, xywh2xyxy,
+                           xyxy2xywh, yaml_load)
 from utils.torch_utils import copy_attr, smart_inference_mode
 
 
@@ -889,7 +875,7 @@ class AutoShape(nn.Module):
             x = np.ascontiguousarray(np.array(x).transpose((0, 3, 1, 2)))  # stack and BHWC to BCHW
             x = torch.from_numpy(x).to(p.device).type_as(p) / 255  # uint8 to fp16/32
 
-        with amp.autocast(autocast):
+        with torch.amp.autocast(device_type='cuda'):
             # Inference
             with dt[1]:
                 y = self.model(x, augment=augment)  # forward
